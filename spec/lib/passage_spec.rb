@@ -3,10 +3,6 @@
 require 'spec_helper'
 
 RSpec.describe Passage, type: :passage do
-  let(:trajectory) do
-    [Point.new(x_pos: 10, y_pos: 19), Point.new(x_pos: 19, y_pos: 14)]
-  end
-
   let(:transmitters) { Fixtures::Transmitters.base_set }
   let(:polygons) { MapperHelper.polygon_build(transmitters) }
 
@@ -18,8 +14,28 @@ RSpec.describe Passage, type: :passage do
   end
 
   context 'when path is safe' do
+    let(:trajectory) do
+      [
+        Point.new(x_pos: 10, y_pos: 19),
+        Point.new(x_pos: 19, y_pos: 14)
+      ]
+    end
+
     it do
       expect(passage.safe?).to eql 'Safe passage is possible.'
+    end
+  end
+
+  context 'when path is unsafe' do
+    let(:trajectory) do
+      [
+        Point.new(x_pos: 4, y_pos: 21),
+        Point.new(x_pos: 19, y_pos: 14)
+      ]
+    end
+
+    it do
+      expect(passage.safe?).to eql 'Safe passage is not possible.'
     end
   end
 end

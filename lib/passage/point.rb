@@ -17,7 +17,8 @@ class Point
 
   def destination_to(point)
     point_valid?(point)
-    (((@x_pos - point.x_pos).abs2 + (@y_pos - point.y_pos).abs2)**0.5)
+    (((@x_pos - point.x_pos)**2 +
+      (@y_pos - point.y_pos)**2)**0.5)
       .round(PRECISION_RATE || 2)
   end
 
