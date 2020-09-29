@@ -31,6 +31,8 @@ trajectory from the start point to end inside of the field of transmitters.'
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov-cobertura'
   spec.add_development_dependency 'guard-rspec'
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'rspec'

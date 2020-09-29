@@ -1,5 +1,9 @@
 # frozen_string_literal: true
-
+require 'simplecov'
+require 'simplecov-cobertura'
+SimpleCov.start do
+  formatter SimpleCov::Formatter::CoberturaFormatter
+end
 require 'passage'
 require 'cli_runner'
 require 'support/transmitters_fixture'

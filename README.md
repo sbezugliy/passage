@@ -1,4 +1,7 @@
 # Passage
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b674417324f34fb4af40068646585d41)](https://www.codacy.com?utm_source=bitbucket.org&amp;utm_medium=referral&amp;utm_content=sergey_bezugliy/passage&amp;utm_campaign=Badge_Grade)
+
 Library providing a check of the path for safety by trajectory from the start point to end inside of the field of transmitters. 
 
 ## Install dependencies
