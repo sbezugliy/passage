@@ -14,7 +14,7 @@ class Passage
   attr_reader :status
 
   def safe?
-    @status = @polygons.any?{|polygon| polygon.safe?(@trajectory) == true }
+    @status = @polygons.any? { |polygon| polygon.safe?(@trajectory) == true }
     @status ? Message::Result.safe : Message::Result.unsafe
   end
 end

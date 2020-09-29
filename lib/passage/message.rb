@@ -23,7 +23,7 @@ module Message
       end
 
       def enter_transmitter(number)
-        "Enter parameters for transmitter ##{number} `<x> <y> <power>`: "
+        "Enter transmitter ##{number} `<x> <y> <power>`: "
       end
 
       def enter_start

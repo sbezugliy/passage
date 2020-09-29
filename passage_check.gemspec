@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['sergey@foreto.com', 's.bezugliy@codenv.top']
 
   spec.summary       = 'Check if vehicle is on a safe path'
-  spec.description   = 'Library providing a check of the path for safety by trajectory from the start point to end \
-inside of the field of transmitters.'
+  spec.description   = 'Library providing a check of the path for safety by\
+trajectory from the start point to end inside of the field of transmitters.'
   spec.homepage      = 'https://bitbucket.org'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
@@ -21,9 +21,11 @@ inside of the field of transmitters.'
   spec.metadata['changelog_uri'] = 'https://bitbucket.org'
 
   # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  # The `git ls-files -z` loads the files in the RubyGem,
+  # that have been added into git.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+    `git ls-files -z`.split("\x0")
+                     .reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
   spec.bindir        = 'bin'
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

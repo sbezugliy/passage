@@ -13,7 +13,9 @@ RSpec.describe Point, type: :point do
 
   describe '#nearest_available_transmitter(transmitters)' do
     let(:transmitters) { Fixtures::Transmitters.base_set }
-    let(:nearest_transmitter) { point.nearest_available_transmitter(transmitters) }
+    let(:nearest_transmitter) do
+      point.nearest_available_transmitter(transmitters)
+    end
 
     it do
       expect(nearest_transmitter.x_pos).to be 12
