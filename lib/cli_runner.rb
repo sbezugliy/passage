@@ -2,8 +2,6 @@
 
 require 'passage'
 
-# Rate of precision for distances. A number of digits after point for float value.
-
 # CLIRunner factory class
 class CLIRunner
   attr_accessor :count_of_transmitters,
