@@ -2,30 +2,36 @@
 
 # Polygon class
 class Polygon
-  attr_accessor :polygon
-  attr_writer :transmitters
-  attr_reader :not_connected
+  attr_accessor :connected
+  attr_reader :unconnected
 
   def initialize(transmitters)
-    @transmitters = transmitters
-    @polygon = []
-    @not_connected = []
+    @unconnected = transmitters
+    @connected = []
     build_polygon
+  end
+
+  def safe?(trajectory)
+    trajectory.each do |point|
+      return false unless point.nearest_available_transmitter(@connected).nil?
+    end
+    true
   end
 
   private
 
   def build_polygon
-    collect_intersections(@transmitters.shift)
+    first_transmitter = @unconnected.shift
+    @connected << first_transmitter
+    connect(first_transmitter)
   end
 
-  def collect_intersections(current_transmitter)
-    @transmitters.each do |transmitter|
+  def connect(current_transmitter)
+    @unconnected.each.with_index do |transmitter, index|
       if current_transmitter.intersects?(transmitter)
-        @polygon << transmitter
-        break
+        @connected << transmitter
+        connect(@unconnected.delete_at(index))
       end
-      @not_connected << transmitter
     end
   end
 end

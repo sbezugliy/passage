@@ -9,16 +9,10 @@ class Point
     @y_pos = y_pos
   end
 
-  def nearest_available_transmitter(_transmitter)
-    points.min do |t1, t2|
-      dest_t1 = destination_to(t1)
-      dest_t2 = destination_to(t2)
-      flag = (dest_t1 <=> dest_t2)
-      return (dest_t1 < t1.power ? -1 : 1) if flag == -1
-      return (dest_t2 < t2.power ? 1 : -1) if flag == 1
-
-      return t1.power <=> t2.power
-    end
+  def nearest_available_transmitter(transmitters)
+    transmitters
+      .select { |t1| destination_to(t1) < t1.power }
+      .min { |t1, t2| destination_to(t1) <=> destination_to(t2) }
   end
 
   def destination_to(point)

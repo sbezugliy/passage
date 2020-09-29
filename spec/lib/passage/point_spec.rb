@@ -2,17 +2,23 @@
 
 require 'spec_helper'
 
-RSpec.describe Point do
-  let(:point_a) { described_class.new(x_pos: 2, y_pos: 6) }
+RSpec.describe Point, type: :point do
+  let(:point) { described_class.new(x_pos: 10, y_pos: 19) }
 
   describe '#destination_to(point)' do
-    let(:point_b) { described_class.new(x_pos: 20, y_pos: 37) }
+    let(:point_2) { described_class.new(x_pos: 19, y_pos: 14) }
 
-    it { expect(point_a.destination_to(point_b)).to be 35.85 }
+    it { expect(point.destination_to(point_2)).to be 10.3 }
   end
 
-  describe '#find_nearest_available' do
-    let(:points) do
+  describe '#nearest_available_transmitter(transmitters)' do
+    let(:transmitters) { Fixtures::Transmitters.base_set }
+    let(:nearest_transmitter) { point.nearest_available_transmitter(transmitters) }
+
+    it do
+      expect(nearest_transmitter.x_pos).to be 12
+      expect(nearest_transmitter.y_pos).to be 19
+      expect(nearest_transmitter.power).to be 4
     end
   end
 end

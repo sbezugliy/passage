@@ -2,10 +2,10 @@
 
 require 'passage'
 require 'cli_runner'
-
-PRECISION_RATE = 2
+require 'support/transmitters_fixture'
 
 RSpec.configure do |config|
+  config.include Fixtures::Transmitters, type: %i[point transmitter polygon passage]
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

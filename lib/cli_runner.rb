@@ -3,19 +3,18 @@
 require 'passage'
 
 # Rate of precision for distances. A number of digits after point for float value.
-PRECISION_RATE = 2
 
 # CLIRunner factory class
 class CLIRunner
-  include Message::Result
-  include Message::CLI
-
-  attr_writer :count_of_transmitters,
-              :executor,
-              :transmitters,
-              :trajectory
+  attr_accessor :count_of_transmitters,
+                :executor,
+                :transmitters,
+                :trajectory,
+                :polygons
 
   def initialize
+    @transmitters = []
+    @polygons = []
     read_inputs
   end
 
@@ -33,13 +32,13 @@ class CLIRunner
   end
 
   def result
-    @executor.is_path_safe?
+    $stdout.print("#{@executor.safe?}\n")
   end
 
   private
 
   def init_polygons
-    @polygons = Polygon.new(@transmitters)
+    @polygons = MapperHelper.polygon_build(@transmitters)
   end
 
   def read_count
@@ -48,24 +47,21 @@ class CLIRunner
   end
 
   def read_transmitter
-    map_input_to_hash(%i[x_pos y_pos power])
+    MapperHelper.map_input_to_hash(%i[x_pos y_pos power])
   end
 
   def read_trajectory
-    @trajectory = {
-      start: map_input_to_hash(%i[x_pos y_pos]),
-      end: map_input_to_hash(%i[x_pos y_pos])
-    }
+    @trajectory = []
+    $stdout.print(Message::CLI.enter_start)
+    @trajectory << Point.new(**MapperHelper.map_input_to_hash(%i[x_pos y_pos]))
+    $stdout.print(Message::CLI.enter_end)
+    @trajectory << Point.new(**MapperHelper.map_input_to_hash(%i[x_pos y_pos]))
   end
 
   def init_transmitters
-    @transmitters = count_of_transmitters.map.with_index do |_, _index|
-      $stdout.print(Message::CLI[:enter_transmitter])
-      Transmitter.new(read_transmitter)
+    @count_of_transmitters.to_i.times do |number|
+      $stdout.print(Message::CLI.enter_transmitter(number))
+      @transmitters << Transmitter.new(**read_transmitter)
     end
-  end
-
-  def map_input_to_hash(keys)
-    Hash[keys.zip($stdin.readline.split)]
   end
 end
