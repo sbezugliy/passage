@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Polygon class
 class Polygon
   attr_accessor :polygon
   attr_writer :transmitters
@@ -22,7 +23,7 @@ class Polygon
     @transmitters.each do |transmitter|
       if current_transmitter.intersects?(transmitter)
         @polygon << transmitter
-        return
+        break
       end
       @not_connected << transmitter
     end

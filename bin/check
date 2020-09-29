@@ -5,6 +5,6 @@ require 'bundler/setup'
 require_relative '../lib/cli_runner'
 
 @runner = CLIRunner.new
-@runner.set_executor
+@runner.init_executor
 
 $stdout.print @runner.result

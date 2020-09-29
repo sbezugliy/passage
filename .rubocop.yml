@@ -6,14 +6,8 @@ AllCops:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - codenv.gemspec
-    - app/**/*.rb
+    - passage.gemspec
     - spec/**/*_spec.rb
-
-Metrics/MethodLength:
-  Enabled: true
-  Exclude:
-    - config/*.rb
 
 RSpec/ExampleLength:
   Enabled: true

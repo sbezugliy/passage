@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'lib/passage_check/version'
+require_relative 'lib/passage/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'passage'
   spec.version       = VERSION
   spec.authors       = ['Sergey Bezugliy']
-  spec.email         = ['s.bezugliy@codenv.top']
+  spec.email         = ['sergey@foreto.com', 's.bezugliy@codenv.top']
 
   spec.summary       = 'Check if vehicle is on a safe path'
   spec.description   = 'Library providing a check of the path for safety by trajectory from the start point to end \

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require 'codenv'
+require 'passage'
+require 'cli_runner'
+
+PRECISION_RATE = 2
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

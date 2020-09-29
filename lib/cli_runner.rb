@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 require 'passage'
-require 'passage/transmitter'
-require 'passage/polygon'
 
-# Sampling
-PRECISION_AFTER_POINT = 2
+# Rate of precision for distances. A number of digits after point for float value.
+PRECISION_RATE = 2
 
 # CLIRunner factory class
 class CLIRunner
+  include Message::Result
+  include Message::CLI
+
   attr_writer :count_of_transmitters,
               :executor,
               :transmitters,
@@ -25,7 +26,7 @@ class CLIRunner
     init_polygons
   end
 
-  def set_executor(executor = Passage.new)
+  def init_executor(executor = Passage.new)
     @executor = executor
     @executor.polygons = @polygons
     @executor.trajectory = @trajectory
@@ -47,19 +48,19 @@ class CLIRunner
   end
 
   def read_transmitter
-    map_input_to_hash(%i[x y z])
+    map_input_to_hash(%i[x_pos y_pos power])
   end
 
   def read_trajectory
     @trajectory = {
-      start: map_input_to_hash(%i[x y]),
-      end: map_input_to_hash(%i[x y])
+      start: map_input_to_hash(%i[x_pos y_pos]),
+      end: map_input_to_hash(%i[x_pos y_pos])
     }
   end
 
   def init_transmitters
-    @transmitters = count_of_transmitters.map.with_index do |_, index|
-      $stdout.print(Message::CLI[:enter_count])
+    @transmitters = count_of_transmitters.map.with_index do |_, _index|
+      $stdout.print(Message::CLI[:enter_transmitter])
       Transmitter.new(read_transmitter)
     end
   end
