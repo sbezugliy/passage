@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require_relative '../lib/cli_runner'
+
+@runner = CLIRunner.new
+@runner.set_executor
+
+$stdout.print @runner.result
