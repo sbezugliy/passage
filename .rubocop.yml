@@ -6,7 +6,7 @@ AllCops:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - passage.gemspec
+    - passage_check.gemspec
     - spec/**/*_spec.rb
 
 RSpec/ExampleLength:
