@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 require 'simplecov'
-require 'simplecov-cobertura'
+require 'codacy-coverage'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter
+                        .new([
+                                         SimpleCov::Formatter::HTMLFormatter,
+                                         Codacy::Formatter
+                                       ])
+
 SimpleCov.start do
-  formatter SimpleCov::Formatter::CoberturaFormatter
+  add_filter '.gems'
+  add_filter 'pkg'
+  add_filter 'spec'
+  add_filter 'vendor'
 end
 require 'passage'
 require 'cli_runner'

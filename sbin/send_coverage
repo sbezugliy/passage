@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-cd ..
-bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+cd .. && bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./coverage/coverage.xml
