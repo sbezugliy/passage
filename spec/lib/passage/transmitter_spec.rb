@@ -15,11 +15,17 @@ RSpec.describe Transmitter, type: :transmitter do
 
   describe '#intersects?(other_transmitter)' do
     context 'when intersects' do
-      it { expect(transmitter).to be_intersects(intersecting_transmitter) }
+      it do
+        expect(transmitter)
+          .to be_intersects(intersecting_transmitter)
+      end
     end
 
     context 'when not intersects' do
-      it { expect(transmitter).not_to be_intersects(non_intersecting_transmitter) }
+      it do
+        expect(transmitter)
+          .not_to be_intersects(non_intersecting_transmitter)
+      end
     end
   end
 end

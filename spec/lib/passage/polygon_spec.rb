@@ -7,21 +7,17 @@ RSpec.describe Polygon, type: :polygon do
 
   let(:transmitters) { Fixtures::Transmitters.base_set }
 
+  let(:map_polygon) do
+    lambda do |polygon_array|
+      polygon_array.map do |t|
+        { x_pos: t.x_pos, y_pos: t.y_pos, power: t.power }
+      end
+    end
+  end
+
   context 'when there are two polygons' do
-    let(:polygon_map) do
-      polygon.connected.map do |t|
-        { x_pos: t.x_pos, y_pos: t.y_pos, power: t.power }
-      end
-    end
-
-    let(:unconnected_transmitters) do
-      polygon.unconnected.map do |t|
-        { x_pos: t.x_pos, y_pos: t.y_pos, power: t.power }
-      end
-    end
-
     it 'returns main polygon' do
-      expect(polygon_map)
+      expect(map_polygon.call(polygon.connected))
         .to eql [
           { x_pos: 6, y_pos: 11, power: 4 },
           { x_pos: 8, y_pos: 17, power: 3 },
@@ -32,7 +28,7 @@ RSpec.describe Polygon, type: :polygon do
     end
 
     it 'returns unconnected transmitters' do
-      expect(unconnected_transmitters)
+      expect(map_polygon.call(polygon.unconnected))
         .to eql [{ power: 2, x_pos: 19, y_pos: 19 }]
     end
   end
