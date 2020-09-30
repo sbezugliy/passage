@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-require 'codacy-coverage'
+# require 'simplecov'
+# require 'codacy-coverage'
+# SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter
+#                       .new([
+#                              SimpleCov::Formatter::HTMLFormatter,
+#                              Codacy::Formatter
+#                            ])
+#
+# SimpleCov.start do
+#   add_filter '.gems'
+#   add_filter 'pkg'
+#   add_filter 'spec'
+#   add_filter 'vendor'
+# end
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter
-                      .new([
-                             SimpleCov::Formatter::HTMLFormatter,
-                             Codacy::Formatter
-                           ])
-
-SimpleCov.start do
-  add_filter '.gems'
-  add_filter 'pkg'
-  add_filter 'spec'
-  add_filter 'vendor'
-end
+require 'byebug'
+require 'pry'
+require 'pry-byebug'
 require 'passage'
 require 'cli_runner'
 require 'support/transmitters_fixture'

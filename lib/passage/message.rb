@@ -12,7 +12,7 @@ module Message
       def unsafe
         'Safe passage is not possible.'
       end
-      end
+    end
   end
 
   # CLI helper messages

@@ -32,4 +32,35 @@ RSpec.describe Polygon, type: :polygon do
         .to eql [{ power: 2, x_pos: 19, y_pos: 19 }]
     end
   end
+
+  describe '#safe?' do
+    let(:transmitters) do
+      [
+        Transmitter.new(x_pos: 10, y_pos: 10, power: 5),
+        Transmitter.new(x_pos: 17, y_pos: 12, power: 4)
+      ]
+    end
+
+    context 'when point is inside of range' do
+      let(:trajectory) do
+        [Point.new(x_pos: 12, y_pos: 12)]
+      end
+
+      it do
+        expect(polygon.safe?(trajectory))
+          .to be true
+      end
+    end
+
+    context 'when point is out of range' do
+      let(:trajectory) do
+        [Point.new(x_pos: 12, y_pos: 16)]
+      end
+
+      it do
+        expect(polygon.safe?(trajectory))
+          .to be false
+      end
+    end
+  end
 end

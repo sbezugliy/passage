@@ -13,7 +13,7 @@ class Polygon
 
   def safe?(trajectory)
     trajectory.each do |point|
-      return false unless point.nearest_available_transmitter(@connected).nil?
+      return false if point.nearest_available_transmitter(@connected).nil?
     end
     true
   end

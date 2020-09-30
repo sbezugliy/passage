@@ -32,9 +32,10 @@ trajectory from the start point to end inside of the field of transmitters.'
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'codacy-coverage'
   spec.add_development_dependency 'guard-rspec'
   spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-rspec'
