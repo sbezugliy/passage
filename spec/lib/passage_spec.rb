@@ -9,17 +9,20 @@ RSpec.describe Passage, type: :passage do
   let(:passage) do
     passage_inst = described_class.new
     passage_inst.polygons = polygons
-    passage_inst.trajectory = trajectory
+    passage_inst.trajectory = build_trajectory.call(points)
     passage_inst
   end
 
-  context 'when path is safe' do
-    let(:trajectory) do
-      [
-        Point.new(x_pos: 10, y_pos: 19),
-        Point.new(x_pos: 19, y_pos: 14)
-      ]
+  let(:build_trajectory) do
+    lambda do |points_map|
+      points_map.map do |pos|
+        Point.new(x_pos: pos[:x], y_pos: pos[:y])
+      end
     end
+  end
+
+  context 'when path is safe' do
+    let(:points) { [{ x: 10, y: 19 }, { x: 19, y: 14 }] }
 
     it do
       expect(passage.safe?).to eql 'Safe passage is possible.'
@@ -27,12 +30,7 @@ RSpec.describe Passage, type: :passage do
   end
 
   xcontext 'when path is unsafe' do
-    let(:trajectory) do
-      [
-        Point.new(x_pos: 4, y_pos: 21),
-        Point.new(x_pos: 19, y_pos: 14)
-      ]
-    end
+    let(:points) { [{ x: 4, y: 21 }, { x: 19, y: 14 }] }
 
     xit do
       expect(passage.safe?).to eql 'Safe passage is not possible.'
