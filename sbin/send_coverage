@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-cd .. && bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./coverage/coverage.xml
+LAST_COMMIT_HEAD=git show --pretty=format:%H -s
+cd .. && bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
+    --commit-uuid ${LAST_COMMIT_HEAD}
