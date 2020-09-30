@@ -13,6 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.1, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.1.4, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.3, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="codacy-coverage (v2.2.1, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.3, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.4.4, RVM: ruby-2.7.1 [safe_path]) [gem]" level="application" />

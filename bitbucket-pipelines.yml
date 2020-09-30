@@ -6,20 +6,22 @@
 image: ruby:2.7.1
 
 pipelines:
-  default:
-    - step:
-        caches:
-          - bundler
-        script:
-          - bundle install
-          - bundle exec rubocop
-    - step:
-        caches:
-          - bundler
-          - codacy
-        script:
-          - bundle install
-          - bundle exec rspec
+  branches:
+    master:
+      - step:
+          caches:
+            - bundler
+          script:
+            - bundle install
+            - bundle exec rubocop
+      - step:
+          caches:
+            - bundler
+            - codacy
+          script:
+            - bundle install
+            - bundle exec rspec
+            - ./sbin/send_coverage
 definitions:
   caches:
     bundler: ./vendor
