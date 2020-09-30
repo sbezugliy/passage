@@ -10,19 +10,17 @@ pipelines:
     - step:
         caches:
           - bundler
-        script: # Modify the commands below to build your repository.
-          - bundle install
-    - step:
-        caches:
-          - bundler
         script:
+          - bundle install
           - bundle exec rubocop
     - step:
         caches:
           - bundler
+          - codacy
         script:
+          - bundle install
           - bundle exec rspec
-
 definitions:
   caches:
     bundler: ./vendor
+    codacy: ./codacy
